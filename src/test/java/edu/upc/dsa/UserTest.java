@@ -1,0 +1,53 @@
+package edu.upc.dsa;
+
+import edu.upc.dsa.utils.*;
+import org.junit.After;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
+
+public class UserTest {
+    GameManager gm;
+
+    @Before
+    public void setUp() {
+        gm = GameManagerImp.getInstance();
+
+        this.gm.addUser("Marc","Vila","marclays");
+        this.gm.addUser("Toni", "Norton", "tonilivo");
+        this.gm.addUser("Ferran", "Lopez", "elbicho");
+    }
+
+    @Test //Adding users + checking the number of users
+    public void testAddUsers() {
+
+        this.gm.addUser("Juan", "Magan", "lapulga");
+
+        Assert.assertEquals(4, this.gm.getNumUsers());
+    }
+
+    @Test
+    public void testAddObjects(){
+
+        this.gm.addArmasUser("marclays","Espada", "Espada gigante");
+        this.gm.addArmasUser("marclays","Arco", "Arco magnifico");
+        this.gm.addArmasUser("tonilivo", "Escudo", "Escudo gigante");
+
+        Assert.assertEquals(2, this.gm.getnumArmasbyUser("marclays"));
+        Assert.assertEquals(1,this.gm.getnumArmasbyUser("tonilivo"));
+    }
+
+    @Test
+    public void testModifyUser(){
+
+        this.gm.addArmasUser("elbicho", "moneda", "moneda brillante");
+        this.gm.updateUser("Ferran","Lopez","fr98@yahoo.com", "elbicho");
+        Assert.assertEquals("fr98@yahoo.com",this.gm.getUser("elbicho").getMail());
+        Assert.assertEquals(1,this.gm.getnumArmasbyUser("elbicho"));
+    }
+
+    @After
+    public void tearDown(){
+        this.gm.clear();
+    }
+}
