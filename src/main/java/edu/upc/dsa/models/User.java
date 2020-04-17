@@ -6,7 +6,6 @@ public class User implements Comparable<User>{
     String id;
     String name;
     String lastname;
-    String mail;
     LinkedList<Armas> armas;
 
     public User(String n, String ln, String id){
@@ -49,13 +48,6 @@ public class User implements Comparable<User>{
 
     public void addArmas(Armas obj){ this.armas.add(obj); }
 
-    public void setMail(String bio) {
-        this.mail = bio;
-    }
-
-    public String getMail() {
-        return mail;
-    }
 
     @Override
     public int compareTo(User u) {

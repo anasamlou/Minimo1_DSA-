@@ -13,15 +13,15 @@ public class UserTest {
     public void setUp() {
         gm = GameManagerImp.getInstance();
 
-        this.gm.addUser("Marc","Vila","marclays");
-        this.gm.addUser("Toni", "Norton", "tonilivo");
-        this.gm.addUser("Ferran", "Lopez", "elbicho");
+        this.gm.addUser("Anas","Amlou","anasamlou");
+        this.gm.addUser("Carlos", "Mafiozo", "carlosmafiozo");
+        this.gm.addUser("juninho", "Pernambucano", "elbicho");
     }
 
     @Test //Adding users + checking the number of users
     public void testAddUsers() {
 
-        this.gm.addUser("Juan", "Magan", "lapulga");
+        this.gm.addUser("Papi", "Arca", "lamaravilla");
 
         Assert.assertEquals(4, this.gm.getNumUsers());
     }
@@ -29,21 +29,21 @@ public class UserTest {
     @Test
     public void testAddObjects(){
 
-        this.gm.addArmasUser("marclays","Espada", "Espada gigante");
-        this.gm.addArmasUser("marclays","Arco", "Arco magnifico");
-        this.gm.addArmasUser("tonilivo", "Escudo", "Escudo gigante");
+        this.gm.addArmasUser("anasamlou","Espada", "afilada");
+        this.gm.addArmasUser("carlosmafiozo","guitarra", "española");
+        this.gm.addArmasUser("elbicho", "maquina", "deltiempo");
 
-        Assert.assertEquals(2, this.gm.getnumArmasbyUser("marclays"));
-        Assert.assertEquals(1,this.gm.getnumArmasbyUser("tonilivo"));
+        Assert.assertEquals(1, this.gm.getnumArmasbyUser("anasamlou"));
+        Assert.assertEquals(1,this.gm.getnumArmasbyUser("carlosmafiozo"));
     }
 
     @Test
     public void testModifyUser(){
 
-        this.gm.addArmasUser("elbicho", "moneda", "moneda brillante");
-        this.gm.updateUser("Ferran","Lopez","fr98@yahoo.com", "elbicho");
-        Assert.assertEquals("fr98@yahoo.com",this.gm.getUser("elbicho").getMail());
-        Assert.assertEquals(1,this.gm.getnumArmasbyUser("elbicho"));
+        this.gm.addArmasUser("anasamlou", "Armadura", "metalica");
+        this.gm.updateUser("Anass","Amlou", "anasamlou");
+        Assert.assertEquals("Anass",this.gm.getUser("anasamlou").getName());
+        Assert.assertEquals(1,this.gm.getnumArmasbyUser("anasamlou"));
     }
 
     @After

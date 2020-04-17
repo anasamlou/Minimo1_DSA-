@@ -130,7 +130,7 @@ public class GameService{
         User us = this.gm.getUser(u.getId());
         if (us == null || u == null) return Response.status(404).build();
         else {
-            this.gm.updateUser(u.getName(),u.getLastname(),u.getMail(),u.getId());
+            this.gm.updateUser(u.getName(),u.getLastname(),u.getId());
             return Response.status(201).entity(us).build();
         }
     }

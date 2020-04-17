@@ -41,14 +41,13 @@ public class GameManagerImp implements GameManager{
     }
 
     @Override
-    public void updateUser(String name, String lastname, String mail, String id) {
+    public void updateUser(String name, String lastname,  String id) {
         User u = this.allUsers.get(id);
         this.allUsers.remove(id);
-        u.setMail(mail);
         u.setName(name);
         u.setLastname(lastname);
         this.allUsers.put(id,u);
-        logger.info("User modified to: " + u.getName() + " " + u.getLastname() + " with id: " + u.getId() + " and mail: " + u.getMail());
+        logger.info("User modified to: " + u.getName() + " " + u.getLastname() + " having this id: " + u.getId() );
     }
 
     @Override
