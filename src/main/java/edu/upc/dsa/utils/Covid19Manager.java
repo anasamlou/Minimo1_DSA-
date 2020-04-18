@@ -9,7 +9,7 @@ public interface Covid19Manager {
     public List<Brote> getBrotes();
     public void crearBrote(String id);
     public void addCasoToBrote(String id, Casos caso);
-    public void addCasoToBrote(String idobj, String idcaso, String fechanacimiento, String nivelderiesgo, Boolean sospechoso, Boolean confirmado, Boolean nocaso);
+    public void addCasoToBrote(String idobj, String idcaso, String fechanacimiento, String nivelderiesgo, String estado);
     public List<Casos> getCasosOrdenados(String idbrote);
     public void clear();
     public Brote getBroteById(String id);

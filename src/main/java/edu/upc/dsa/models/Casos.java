@@ -10,9 +10,7 @@ public class Casos implements Comparable<Casos> {
     String mail;
     String telefono;
     String direccion;
-    Boolean sospechoso;
-    Boolean confirmado;
-    Boolean nocaso;
+    String estado;
 
     @Override
     public String toString() {
@@ -26,9 +24,7 @@ public class Casos implements Comparable<Casos> {
                 ", mail='" + mail + '\'' +
                 ", telefono='" + telefono + '\'' +
                 ", direccion='" + direccion + '\'' +
-                ", sospechoso=" + sospechoso +
-                ", confirmado=" + confirmado +
-                ", nocaso=" + nocaso +
+                ", estado=" + estado +
                 '}';
     }
 
@@ -56,13 +52,11 @@ public class Casos implements Comparable<Casos> {
         this.apellido = apellido;
     }
 
-    public Casos(String id, String fechanacimiento, String nivelderiesgo, Boolean sospechoso, Boolean confirmado, Boolean nocaso) {
+    public Casos(String id, String fechanacimiento, String nivelderiesgo, String estado) {
         this.id = id;
         this.fechanacimiento = fechanacimiento;
         this.nivelderiesgo = nivelderiesgo;
-        this.sospechoso = sospechoso;
-        this.confirmado = confirmado;
-        this.nocaso = nocaso;
+        this.estado = estado;
     }
 
     public String getFechanacimiento() {
@@ -113,28 +107,13 @@ public class Casos implements Comparable<Casos> {
         this.direccion = direccion;
     }
 
-    public Boolean getSospechoso() {
-        return sospechoso;
+
+    public String getEstado() {
+        return estado;
     }
 
-    public void setSospechoso(Boolean sospechoso) {
-        this.sospechoso = sospechoso;
-    }
-
-    public Boolean getConfirmado() {
-        return confirmado;
-    }
-
-    public void setConfirmado(Boolean confirmado) {
-        this.confirmado = confirmado;
-    }
-
-    public Boolean getNocaso() {
-        return nocaso;
-    }
-
-    public void setNocaso(Boolean nocaso) {
-        this.nocaso = nocaso;
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
 
     public Casos(String id, String nombre, String apellido, String fechanacimiento, String nivelderiesgo, String genero, String mail, String telefono, String direccion, Boolean sospechoso, Boolean confirmado, Boolean nocaso) {
@@ -147,9 +126,8 @@ public class Casos implements Comparable<Casos> {
         this.mail = mail;
         this.telefono = telefono;
         this.direccion = direccion;
-        this.sospechoso = sospechoso;
-        this.confirmado = confirmado;
-        this.nocaso = nocaso;
+        this.estado = estado;
+
     }
 
     @Override

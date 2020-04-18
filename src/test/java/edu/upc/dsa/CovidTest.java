@@ -26,15 +26,15 @@ public class CovidTest {
 
         this.COVID.crearBrote("Brote de Barcelona");
 
-        Assert.assertEquals(4, this.COVID.getBrotes());
+        Assert.assertEquals(4, this.COVID.getBrotes().size());
     }
 
     @Test
     public void testAddCasos(){
-        this.COVID.addCasoToBrote("Brote de Madrid","1","27/01/1932","B",Boolean.TRUE,Boolean.FALSE,Boolean.FALSE);
-        this.COVID.addCasoToBrote("Brote de Madrid","2","27/01/1933","B", FALSE,Boolean.FALSE, TRUE);
-        this.COVID.addCasoToBrote("Brote de Malaga","1","27/01/1936","B", FALSE, TRUE,Boolean.FALSE);
-        this.COVID.addCasoToBrote("Brote de Murcia","1","27/01/1932","B",Boolean.TRUE,Boolean.FALSE,Boolean.FALSE);
+        this.COVID.addCasoToBrote("Brote de Madrid","1","27/01/1932","B","S");
+        this.COVID.addCasoToBrote("Brote de Madrid","2","27/01/1933","B", "S");
+        this.COVID.addCasoToBrote("Brote de Malaga","3","27/01/1936","B","C");
+        this.COVID.addCasoToBrote("Brote de Murcia","4","27/01/1932","B","NC");
 
 
     }

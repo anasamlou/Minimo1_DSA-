@@ -29,8 +29,8 @@ public class Brote {
     public void addCaso(Casos caso){
         this.casos.add(caso); }
 
-    public void addCaso2(String idcaso, String fechanacimiento, String nivelderiesgo, Boolean sospechoso, Boolean confirmado, Boolean nocaso){
-        Casos caso = new Casos(idcaso,fechanacimiento,nivelderiesgo,sospechoso,confirmado,nocaso);
+    public void addCaso2(String idcaso, String fechanacimiento, String nivelderiesgo,String estado){
+        Casos caso = new Casos(idcaso,fechanacimiento,nivelderiesgo,estado);
         this.casos.add(caso); }
 
 

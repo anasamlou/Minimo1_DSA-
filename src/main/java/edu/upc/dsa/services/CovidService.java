@@ -31,10 +31,10 @@ public class CovidService {
             this.CS.crearBrote("Brote de Murcia");
             this.CS.crearBrote("Brote de Malaga");
 
-            this.CS.addCasoToBrote("Brote de Madrid","1","27/01/1932","B", TRUE, FALSE, FALSE);
-            this.CS.addCasoToBrote("Brote de Madrid","2","27/01/1933","B", FALSE, FALSE, TRUE);
-            this.CS.addCasoToBrote("Brote de Malaga","1","27/01/1936","B", FALSE, TRUE, FALSE);
-            this.CS.addCasoToBrote("Brote de Murcia","1","27/01/1932","B", TRUE, FALSE, FALSE);
+            this.CS.addCasoToBrote("Brote de Madrid","1","27/01/1932","B","S");
+            this.CS.addCasoToBrote("Brote de Madrid","2","27/01/1933","B", "S");
+            this.CS.addCasoToBrote("Brote de Malaga","1","27/01/1936","B","C");
+            this.CS.addCasoToBrote("Brote de Murcia","1","27/01/1932","B","NC");
         }
     }
 
@@ -96,13 +96,13 @@ public class CovidService {
             @ApiResponse(code = 404, message = "Subject/Student not found")
     })
     @Path("/User/{id}")
-    public Response addCasoToBrote(@PathParam("id") String idbrote, String idcaso, String fechanacimiento, String nivelderiesgo, Boolean sospechoso, Boolean confirmado, Boolean nocaso) {
+    public Response addCasoToBrote(@PathParam("id") String idbrote, String idcaso, String fechanacimiento, String nivelderiesgo, String estado) {
 
         Brote u = this.CS.getBroteById(idbrote);
 
         if (u == null) return Response.status(404).build();
         else {
-            this.CS.addCasoToBrote("Brote de Madrid","1","27/01/1932","B",Boolean.TRUE,Boolean.FALSE,Boolean.FALSE);
+            this.CS.addCasoToBrote(idbrote,idcaso,fechanacimiento,nivelderiesgo,estado);
             return Response.status(201).entity(u).build();
         }
     }

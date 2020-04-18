@@ -36,6 +36,7 @@ public class Covid19ManagerImp implements Covid19Manager {
     public void crearBrote(String id) {
         logger.info("entering to crearBrote");
         Brote u = new Brote(id);
+        u.setCasos(new LinkedList<Casos>());
         this.myBrote.put(u.getId(),u);
         logger.info("New brote registered with id: " + u.getId());
     }
@@ -44,12 +45,12 @@ public class Covid19ManagerImp implements Covid19Manager {
 
 
     @Override
-    public void addCasoToBrote(String idbrote, String idcaso, String fechanacimiento, String nivelderiesgo, Boolean sospechoso, Boolean confirmado, Boolean nocaso)
+    public void addCasoToBrote(String idbrote, String idcaso, String fechanacimiento, String nivelderiesgo, String estado)
     {
         logger.info("entering to addCasoToBrote");
         Brote brote = this.myBrote.get(idbrote);
-        Casos caso = new Casos(idcaso,fechanacimiento,nivelderiesgo,sospechoso,confirmado,nocaso);
-        brote.addCaso2(idcaso,fechanacimiento,nivelderiesgo,sospechoso,confirmado,nocaso);
+        Casos caso = new Casos(idcaso,fechanacimiento,nivelderiesgo,estado);
+        brote.addCaso(caso);
         this.myBrote.put(idbrote,brote);
         logger.info(brote.getId() + " received: " + caso.getId());
     }
@@ -69,10 +70,11 @@ public class Covid19ManagerImp implements Covid19Manager {
     public List<Casos> getCasosOrdenados(String idbrote) {
         logger.info("Entering to getCasosOrdenados");
         List<Casos> casos = new LinkedList<Casos>(this.myBrote.get(idbrote).getCasos());
+        Collections.sort(casos);
         List<Casos> ordenados = new LinkedList<Casos>();
         for (int i=0; i<casos.size(); i++)
         {
-            if (casos.get(i).getSospechoso() == Boolean.TRUE){
+            if (casos.get(i).getEstado() == "S"){
                 ordenados.add(casos.get(i));
             }
             else{
@@ -81,7 +83,7 @@ public class Covid19ManagerImp implements Covid19Manager {
         }
         for (int i=ordenados.size(); i<casos.size(); i++)
         {
-            if (casos.get(i).getConfirmado() == Boolean.TRUE){
+            if (casos.get(i).getEstado() == "C"){
                 ordenados.add(casos.get(i));
             }
             else{
@@ -90,14 +92,13 @@ public class Covid19ManagerImp implements Covid19Manager {
         }
         for (int i=ordenados.size(); i<casos.size(); i++)
         {
-            if (casos.get(i).getSospechoso() == Boolean.TRUE){
+            if (casos.get(i).getEstado() == "NC"){
                 ordenados.add(casos.get(i));
             }
             else{
                 i++;
             }
         }
-        Collections.sort(casos);
         logger.info("Sorted: "+casos);
         return casos;
         }
