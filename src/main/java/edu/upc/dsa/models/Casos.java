@@ -1,10 +1,14 @@
 package edu.upc.dsa.models;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Casos implements Comparable<Casos> {
     String id;
     String nombre;
     String apellido;
-    String fechanacimiento;
+    Date fechanacimiento;
     String nivelderiesgo;
     String genero;
     String mail;
@@ -55,18 +59,18 @@ public class Casos implements Comparable<Casos> {
         this.apellido = apellido;
     }
 
-    public Casos(String id, String fechanacimiento, String nivelderiesgo, String estado) {
+    public Casos(String id, Date fechanacimiento, String nivelderiesgo, String estado) {
         this.id = id;
         this.fechanacimiento = fechanacimiento;
         this.nivelderiesgo = nivelderiesgo;
         this.estado = estado;
     }
 
-    public String getFechanacimiento() {
+    public Date getFechanacimiento() {
         return fechanacimiento;
     }
 
-    public void setFechanacimiento(String fechanacimiento) {
+    public void setFechanacimiento(Date fechanacimiento) {
         this.fechanacimiento = fechanacimiento;
     }
 
@@ -119,7 +123,7 @@ public class Casos implements Comparable<Casos> {
         this.estado = estado;
     }
 
-    public Casos(String id, String nombre, String apellido, String fechanacimiento, String nivelderiesgo, String genero, String mail, String telefono, String direccion, Boolean sospechoso, Boolean confirmado, Boolean nocaso) {
+    public Casos(String id, String nombre, String apellido, Date fechanacimiento, String nivelderiesgo, String genero, String mail, String telefono, String direccion, Boolean sospechoso, Boolean confirmado, Boolean nocaso) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -140,5 +144,16 @@ public class Casos implements Comparable<Casos> {
         }
         return getFechanacimiento().compareTo(u.getFechanacimiento());
     }
-
+    public static Date createDate(String date) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date ret = null;
+        try {
+            ret = sdf.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return ret;
+    }
 }
+
+

@@ -6,6 +6,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Date;
+
+import static edu.upc.dsa.models.Casos.createDate;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
@@ -31,10 +34,10 @@ public class CovidTest {
 
     @Test
     public void testAddCasos(){
-        this.COVID.addCasoToBrote("Brote de Madrid","1","27/01/1932","B","S");
-        this.COVID.addCasoToBrote("Brote de Madrid","2","27/01/1933","B", "S");
-        this.COVID.addCasoToBrote("Brote de Malaga","3","27/01/1936","B","C");
-        this.COVID.addCasoToBrote("Brote de Murcia","4","27/01/1932","B","NC");
+        this.COVID.addCasoToBrote("Brote de Madrid","1",createDate("27/01/1932"),"B","S");
+        this.COVID.addCasoToBrote("Brote de Madrid","2",createDate("27/01/1933"),"B", "S");
+        this.COVID.addCasoToBrote("Brote de Malaga","3",createDate("27/01/1936"),"B","C");
+        this.COVID.addCasoToBrote("Brote de Murcia","4",createDate("27/01/1932"),"B","NC");
 
 
     }

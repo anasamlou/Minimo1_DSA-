@@ -4,10 +4,8 @@ import edu.upc.dsa.models.Casos;
 import edu.upc.dsa.models.Brote;
 import org.apache.log4j.Logger;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
+import java.text.ParseException;
+import java.util.*;
 
 public class Covid19ManagerImp implements Covid19Manager {
 
@@ -42,10 +40,8 @@ public class Covid19ManagerImp implements Covid19Manager {
     }
 
 
-
-
     @Override
-    public void addCasoToBrote(String idbrote, String idcaso, String fechanacimiento, String nivelderiesgo, String estado)
+    public void addCasoToBrote(String idbrote, String idcaso, Date fechanacimiento, String nivelderiesgo, String estado)
     {
         logger.info("entering to addCasoToBrote");
         Brote brote = this.myBrote.get(idbrote);
@@ -114,4 +110,6 @@ public class Covid19ManagerImp implements Covid19Manager {
         List<Brote> broteList = new LinkedList<Brote>(this.myBrote.values());
         return myBrote.get(id);
     }
+
+
 }

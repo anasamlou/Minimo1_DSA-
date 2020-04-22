@@ -1,8 +1,9 @@
 package edu.upc.dsa.models;
 
+import java.util.Date;
 import java.util.LinkedList;
 
-public class Brote {
+public class Brote{
     String id;
     LinkedList<Casos> casos;
 
@@ -18,6 +19,7 @@ public class Brote {
     }
 
     public LinkedList<Casos> getCasos() {
+
         return casos;
     }
 
@@ -32,7 +34,7 @@ public class Brote {
     public void addCaso(Casos caso){
         this.casos.add(caso); }
 
-    public void addCaso2(String idcaso, String fechanacimiento, String nivelderiesgo,String estado){
+    public void addCaso2(String idcaso, Date fechanacimiento, String nivelderiesgo, String estado){
         Casos caso = new Casos(idcaso,fechanacimiento,nivelderiesgo,estado);
         this.casos.add(caso); }
 

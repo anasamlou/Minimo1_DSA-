@@ -1,5 +1,6 @@
 package edu.upc.dsa.services;
 
+import edu.upc.dsa.models.CasoBrote;
 import edu.upc.dsa.models.Casos;
 import edu.upc.dsa.models.Brote;
 import edu.upc.dsa.utils.Covid19Manager;
@@ -15,10 +16,11 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+import static edu.upc.dsa.models.Casos.createDate;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
-@Api(value = "/user", description = "Endpoint to COVID Service")
+@Api(value = "/Brote", description = "Endpoint to COVID Service")
 @Path("/")
 public class CovidService {
 
@@ -31,15 +33,15 @@ public class CovidService {
             this.CS.crearBrote("Brote de Murcia");
             this.CS.crearBrote("Brote de Malaga");
 
-            this.CS.addCasoToBrote("Brote de Madrid","1","27/01/1932","B","S");
-            this.CS.addCasoToBrote("Brote de Madrid","2","27/01/1933","B", "S");
-            this.CS.addCasoToBrote("Brote de Malaga","1","27/01/1936","B","C");
-            this.CS.addCasoToBrote("Brote de Murcia","1","27/01/1932","B","NC");
+            this.CS.addCasoToBrote("Brote de Madrid","1",createDate("27/01/1932"),"B","S");
+            this.CS.addCasoToBrote("Brote de Madrid","2",createDate("27/01/1933"),"B", "S");
+            this.CS.addCasoToBrote("Brote de Malaga","1",createDate("27/01/1936"),"B","C");
+            this.CS.addCasoToBrote("Brote de Murcia","1",createDate("27/01/1932"),"B","NC");
         }
     }
 
-    @GET //GET all Brotes sorted
-    @ApiOperation(value = "get all users", notes = "Returns list of all users sorted by lastname")
+    @GET //GET all Brotes
+    @ApiOperation(value = "get all brotes", notes = "Returns list of all brotes")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Brote.class, responseContainer="List"),
     })
@@ -78,7 +80,7 @@ public class CovidService {
             @ApiResponse(code = 201, message = "Successful", response= Casos.class),
             @ApiResponse(code = 404, message = "User not found")
     })
-    @Path("/User/{id}/weapons")
+    @Path("/Brote/{id}/casos")
     public Response getCasosByBrote(@PathParam("id") String id){
         Brote u = this.CS.getBroteById(id);
         if(u == null) return Response.status(404).build();
@@ -88,6 +90,36 @@ public class CovidService {
             return Response.status(201).entity(entity).build() ;
         }
     }
+    @GET //GET casos of a Brote sorted
+    @ApiOperation(value = "get Casos of a Brote sorted", notes = "Returns list of Casos of a Brote sorted")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = Brote.class, responseContainer="List"),
+    })
+    @Path("/Brote/{id}/CasosSorted")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response getCasosOrdenados(@PathParam("id") String idBrote){
 
+        List<Casos> casos = this.CS.getCasosOrdenados(idBrote);
 
+        GenericEntity<List<Casos>> entity = new GenericEntity<List<Casos>>(casos) {};
+        return Response.status(201).entity(entity).build() ;
+    }
+
+    @PUT
+    @ApiOperation(value = "add caso to a brote", notes = "caso added")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful",response = Casos.class),
+            @ApiResponse(code = 404, message = "Subject/Student not found")
+    })
+    @Path("/Brote/addBrote")
+    public Response addCasoToBrote(CasoBrote casoBrote) {
+
+        Brote u = this.CS.getBroteById(casoBrote.getIdbrote());
+
+        if (u == null) return Response.status(404).build();
+        else {
+            this.CS.addCasoToBrote(casoBrote.getIdbrote(),casoBrote.getIdcaso(),casoBrote.getFechanacimiento(),casoBrote.getNivelderiesgo(),casoBrote.getEstado());
+            return Response.status(201).entity(u).build();
+        }
+    }
 }
