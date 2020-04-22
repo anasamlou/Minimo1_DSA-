@@ -89,21 +89,5 @@ public class CovidService {
         }
     }
 
-    @PUT
-    @ApiOperation(value = "add weapon to a user", notes = "weapon added")
-    @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful",response = Casos.class),
-            @ApiResponse(code = 404, message = "Subject/Student not found")
-    })
-    @Path("/User/{id}")
-    public Response addCasoToBrote(@PathParam("id") String idbrote, String idcaso, String fechanacimiento, String nivelderiesgo, String estado) {
 
-        Brote u = this.CS.getBroteById(idbrote);
-
-        if (u == null) return Response.status(404).build();
-        else {
-            this.CS.addCasoToBrote(idbrote,idcaso,fechanacimiento,nivelderiesgo,estado);
-            return Response.status(201).entity(u).build();
-        }
-    }
 }

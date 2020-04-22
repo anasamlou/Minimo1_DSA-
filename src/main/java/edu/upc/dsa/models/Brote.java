@@ -6,6 +6,9 @@ public class Brote {
     String id;
     LinkedList<Casos> casos;
 
+    public Brote() {
+    }
+
     public String getId() {
         return id;
     }

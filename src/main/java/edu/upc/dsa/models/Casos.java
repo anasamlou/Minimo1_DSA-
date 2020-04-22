@@ -12,6 +12,9 @@ public class Casos implements Comparable<Casos> {
     String direccion;
     String estado;
 
+    public Casos() {
+    }
+
     @Override
     public String toString() {
         return "Casos{" +
